@@ -15,3 +15,16 @@ navClose.addEventListener('click', () => {
 
 
 
+// login
+const loginBtn = document.getElementById('login-btn'),
+      loginClose = document.getElementById('login-close'),
+      loginForm = document.getElementById('login'),
+      body = document.body;
+
+      loginBtn.addEventListener('click', toggleLogin);
+      loginClose.addEventListener('click', toggleLogin);
+      
+      function toggleLogin() {
+          loginForm.classList.toggle('show');
+          body.classList.toggle('show-login-overlay');
+      }
