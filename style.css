@@ -10,7 +10,7 @@
 --first-color: hsl(230, 75%, 56%);
 --title-color: hsl(230, 75%, 15%);
 --text-color: hsl(230, 12%, 40%);
---body-color: hsl(230, 100%, 98%);
+--body-color: hsl(0, 0%, 85%);
 --container-color: hsl(232, 100%, 50%);
 --border-color: hsl(230, 25%, 80%);
 
@@ -18,7 +18,8 @@
 --body-font: 'Poppins', sans-serif;
 --h2-font-size: 1.25rem;
 --normal-font-size: .938rem;
-background-color: black;
+  background-color: rgb(34, 34, 34);
+  transition: all .3s ease;
 
 --font-regular: 400;
 --font-medium: 500;
@@ -27,13 +28,6 @@ background-color: black;
 --z-fixed: 100;
 --z-modal: 1000;
 
-}
-
-@media (prefers-color-scheme: dark), (prefers-color-scheme: no-preference) {
-    :root {
-        --main-color: var(--first-color-dark);
-        --title-color: var(--title-color-dark);
-    }
 }
 
 * {
@@ -68,7 +62,7 @@ a {
 .nav {
     height: var(--header-height);
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     padding: 0;
 }
@@ -94,11 +88,10 @@ a {
 .nav__login,
 .nav__toggle,
 .nav__close {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     color: var(--title-color);
     cursor: pointer;
     transition: color .4s;
-
 }
 
 
@@ -114,11 +107,14 @@ a {
         top: -100%;
         left: 0;
         background-color: var(--body-color);
-        box-shadow: 0 8px 16px hsla(230, 75%, 32%, .15);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         width: 100%;
-        padding-block: 4.5rem 4rem;
-        transition: top .4s;
-        justify-content: flex-start;
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+        transition: top 0.5s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
     }
     .nav__list {
         flex-direction: column; 
@@ -135,7 +131,7 @@ a {
     flex-wrap: wrap;
     row-gap: 2.5rem;
     text-align: left;
-    align-items: center;
+    align-items: left;
     flex: 1;
     margin-left: 1rem;
 }
@@ -156,11 +152,11 @@ a {
     transition: color .4s;
 }
 .nav__close {
-    display: none;
     position: absolute;
-    top: .7rem;
+    top: .7rem;  
     right: .7rem;
-    font-size: 1.5rem;
+    font-size: 1.5rem;  
+    cursor: pointer;
 }
 
 /* desktop */
@@ -197,11 +193,9 @@ a {
     width: 100%;
     height: 100%;
     z-index: var(--z-modal);
-    background-color: hsla(230, 75%, 32%, .1);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px); /* safari */
-    padding: 1;
-    box-sizing: border-box;
+    background-color: hsla(34, 34, 34, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* safari */
 }
     .login.show {
     display: flex;
@@ -210,10 +204,24 @@ a {
 }
 
 .login-form {
-    background-color: white;
+    width: 90%;
+    max-width: 320px;
+    background: linear-gradient(to bottom right, #ffffff, #e6e4ff);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0, 0.1);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .login__title {
@@ -247,13 +255,12 @@ a {
 }
 
 .login__button {
-    width: calc(50% - 0.5rem);
-    margin-right: 0.5rem;
-    padding: 0.75rem;
-    background-color: var(--first-color);
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--container-color);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -263,15 +270,14 @@ a {
 }
 
 .login__close {
-    position: fixed;
-    top: 1.4rem;
-    right: 1.rem;
+    position: absolute;
+    top: 1.3rem;
+    right: 1.3rem;
     font-size: 1.5rem;
-    color: var(--title-color);
     cursor: pointer;
+    color: var(--text-color);
 }
 
-/* temp fix for x button not showing on login screen */
-.nav__close.visible {
-    display: none;
-}
+.visible {
+    display: block; 
+  }
