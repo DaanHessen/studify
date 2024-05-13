@@ -314,7 +314,7 @@ a {
 .login__google-button {
     width: 100%;
     padding: 1rem;
-    margin-top: 20px;
+    
     background-color: #DB4437;
     display: flex;
     align-items: center;
