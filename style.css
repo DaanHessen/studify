@@ -6,7 +6,7 @@
     --header-height: 3.5rem;
     --dark-mode: false;  
 
-/* light mode color palette (for now) */
+/* light mode, planning on making dark mode soon */
 --first-color: hsl(230, 75%, 56%);
 --title-color: hsl(230, 75%, 15%);
 --text-color: hsl(230, 12%, 40%);
@@ -186,38 +186,37 @@ a {
     height: 100%;
     z-index: var(--z-modal);
     background-color: hsla(0, 0%, 0%, 0.8);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px); /* safari */
-    justify-content: center;
-    align-items: center;
-    display: flex;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px); /* safari */
+
 }
-    .login.show {
+.login.show {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.login-container {
-    background-color: var(--container-color);
+.login__container {
+    background-color: var(--body-color);
     width: 100%;
     max-width: 420px; 
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
     position: relative; 
+    animation: slideIn 0.5;
 }
 
-.login-form,
+.login__form,
 .login__group {
     display: grid;
 }
 
-.login-form {
+.login__form {
     width: 90%;
     max-width: 360px;
     margin: auto;
-    background-color: var(--container-color);
+    background-color: var(--body-color);
     padding: 2rem;
     box-shadow: 0 8px 12px hsla(0, 0, 0, 0.25);
     border-radius: 8px;
@@ -240,18 +239,16 @@ a {
 .login__title {
     font-size: var(--h2-font-size);
     color: var(--title-color);
-    margin-bottom: 1.5rem;
     text-align: center;
-
+    margin-top: 15px;
 }
 
 .login__group {
-    row-gap: 1rem;
+    text-align: left;
 }
 
 .login__label {
     font-weight: var(--font-medium);
-    margin-bottom: 0.25rem;
     display: block;
     text-align: initial;
     color: var(--font-medium);
@@ -263,53 +260,23 @@ a {
     border: none;
     border-radius: 4px;
     color: var(--text-color);
+    box-sizing: border-box;
 }
 
 .login__input::placeholder {
     color: var(--text-color);
 }
 
-.login__signup {
+.login__actions {
     display: flex;
-    gap: 10px; 
-    justify-content: center;
-    margin-top: 1rem; 
-}
-
-.login__signup a {
-    color: var(--login-btn-color);
-    text-decoration: none; 
-    padding: 1rem; 
-    background-color: hsl(230, 75%, 65%); 
-    border-radius: 4px; 
-}
-
-.login__signup a:hover {
-    background-color: hsl(230, 85%, 70%);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.login__signup a {
-    color: var(--first-color);
-}
-
-.login_forgot {
-    display: block;
-    color: var(--first-color);
-    text-decoration: none;
-    cursor: pointer;
-    margin-top: .5rem;
-}
-
-.login__link {
-    color: var(--first-color);
-    font-size: 1rem;
-    text-align: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .login__button,
-.login__google-button {
-    width: 100%;
+.login__signup-button {
+    width: 48%;
     padding: 1rem;
     color: white;
     border: none;
@@ -318,24 +285,38 @@ a {
     transition: box-shadow .4s, background-color .4s;
 }
 
-.login__button {
-    background-color: var(--first-color);
-
+.login__signup-button {
+    background-color: hsl(230, 65%, 45%);
 }
 
+.login__signup-button:hover {
+    background-color: hsl(230, 75%, 55%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login__button {
+    background-color: var(--first-color);
+}
 
 .login__button:hover {
     background-color: hsl(230, 85%, 60%);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-
 }
 
 .login__google-button {
-    background-color: var(--google-btn-color);
+    width: 100%;
+    padding: 1rem;
+    margin-top: 20px;
+    background-color: #DB4437;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; 
+    gap: 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: box-shadow .4s, background-color .4s;
 }
 
 .login__google-button:hover {
@@ -343,62 +324,82 @@ a {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-
 .login__google-icon {
     width: 20px;
     height: 20px;
-    background-image: url('public\google.svg'); 
+    background-image: url('public/google.svg'); 
     background-size: cover;
 }
 
-.show-login {
-    opacity: 1;
-    pointer-events: initial;
+.login__links {
+    display: flex;
+    justify-content: space-between;
 }
 
-.show-login .login-form {
-    transform: translateY(0);
+.login__link {
+    color: var(--first-color);
+    font-size: 1rem;
+    text-align: center;
 }
 
 .login__close {
     position: absolute;
-    top: 1.3rem;
-    right: 1.3rem;
-    font-size: 1.5rem;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
     cursor: pointer;
     color: var(--text-color);
 }
 
-.login__form {
-    max-width: 400px;
-    margin-inline: auto;
-  }
+.login__forgot-password {
+    text-align: center;
+    color: var(--first-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login__forgot-password:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
 .visible {
     display: block; 
-  }
+}
 
-  @media screen and (min-width: 576px) {
+@media screen and (min-width: 576px) {
     .login {
       padding-top: 10rem;
     }
 
-    .login__close {
-      width: max-content;
-      top: 5rem;
-      left: 0;
-      right: 0;
-      margin-inline: auto;
-      font-size: 2rem;
-    }
+    
   
     .login__form {
       max-width: 400px;
       margin-inline: auto;
     }
-  }
-
-  @media screen and (min-width: 1023px) {
+}
+  
+@media screen and (min-width: 1023px) {
     .nav__close, 
     .nav__toggle {
       display: none;
@@ -411,10 +412,10 @@ a {
     .login__form {
       padding: 3rem 2rem 3.5rem;
     }
-  }
+}
   
-  @media screen and (min-width: 1150px) {
+@media screen and (min-width: 1150px) {
     .container {
       margin-inline: auto;
     }
-  }
+}

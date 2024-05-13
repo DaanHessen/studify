@@ -1,6 +1,7 @@
+
 import './view/pages/home-page';
 
-// menu for smaller devices
+// JS for nenu for smaller devices
 const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
 const navClose = document.getElementById('nav-close');
@@ -28,7 +29,7 @@ function toggleLogin() {
     loginClose.classList.toggle('visible', loginForm.classList.contains('show'));
 }
 
-// login
+// Login
 const loginBtn = document.getElementById('login-btn');
 const loginClose = document.getElementById('login-close');
 const loginForm = document.getElementById('login');
@@ -42,4 +43,14 @@ loginBtn.addEventListener('click', () => {
 loginClose.addEventListener('click', () => {
     toggleLogin();
     toggleNavClose();
+});
+
+// Close login form when clicking outside of it
+document.addEventListener('click', function(event) {
+    const loginContainer = document.querySelector('.login__container');
+    if (!loginContainer.contains(event.target) && !event.target.matches('#login-btn')) {
+        loginForm.classList.remove('show');
+        body.classList.remove('show-login-overlay');
+        loginClose.classList.remove('visible');
+    }
 });
