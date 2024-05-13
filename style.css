@@ -1,7 +1,7 @@
 /* imports */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* base */
+/* base styles */
 :root {
     --header-height: 3.5rem;
     --dark-mode: false;  
@@ -14,7 +14,6 @@
 --container-color: hsl(232, 100%, 50%);
 --border-color: hsl(230, 25%, 80%);
 
-/* font */
 --body-font: 'Poppins', sans-serif;
 --h2-font-size: 1.25rem;
 --normal-font-size: .938rem;
@@ -94,14 +93,12 @@ a {
     transition: color .4s;
 }
 
-
-
 :is(.nav__logo, .nav__login, .nav__toggle, .nav__link):hover {
     color: var(--first-color);
 }
 
 /* mobile */
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 700px) {
     .nav__menu {
         position: fixed;
         top: -100%;
@@ -114,7 +111,14 @@ a {
         transition: top 0.5s ease-in-out;
         display: flex;
         flex-direction: column;
-        align-items: left;
+        align-items: flex-start;
+        z-index: var(--z-modal);
+        row-gap: 1rem;
+    }
+
+    .nav__list {
+        flex-direction: column;
+        
     }
 }
 
@@ -128,10 +132,10 @@ a {
     margin-left: 1rem;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 701px) {
     .nav__list {
         flex-direction: column; 
-        row-gap: 1rem; 
+        
     }
 
     .nav__item {
@@ -142,17 +146,18 @@ a {
     color: var(--title-color);
     font-weight: var(--font-semi-bold);
     transition: color .4s;
+    display: block;
 }
 .nav__close {
     position: absolute;
-    top: .7rem;  
-    right: .7rem;
-    font-size: 1.5rem;  
+    top: 10px;  
+    right: 10px;
+    font-size: 24px;  
     cursor: pointer;
 }
 
 /* desktop */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 700px) {
     .nav__list {
         flex-direction: row; 
         flex-wrap: wrap; 
@@ -217,7 +222,10 @@ a {
     max-width: 360px;
     margin: auto;
     background-color: var(--body-color);
-    padding: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+    padding-bottom:none;
     box-shadow: 0 8px 12px hsla(0, 0, 0, 0.25);
     border-radius: 8px;
     transition: transform .4s, box-shadow .4s;
@@ -399,7 +407,7 @@ a {
     }
 }
   
-@media screen and (min-width: 1023px) {
+@media screen and (min-width: 700px) {
     .nav__close, 
     .nav__toggle {
       display: none;
