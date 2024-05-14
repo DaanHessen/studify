@@ -8,13 +8,13 @@ const navClose = document.getElementById('nav-close');
 navToggle.addEventListener('click', () => {
     if (window.innerWidth <= 1023) {
         navMenu.classList.add('show-menu');
-        toggleNavClose();  
+        toggleNavClose();
     }
 });
 
 navClose.addEventListener('click', () => {
     navMenu.classList.remove('show-menu');
-    toggleNavClose();  
+    toggleNavClose();
 });
 
 function toggleNavClose() {
@@ -54,4 +54,23 @@ document.addEventListener('click', function(event) {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const lightModeToggle = document.getElementById('light-mode');
 
+    // Load the light mode preference from localStorage
+    if (localStorage.getItem('light-mode') === 'enabled') {
+        document.body.classList.add('light-mode');
+        lightModeToggle.checked = true;
+    }
+
+    // Toggle light mode on checkbox change
+    lightModeToggle.addEventListener('change', () => {
+        if (lightModeToggle.checked) {
+            document.body.classList.add('light-mode');
+            localStorage.setItem('light-mode', 'enabled');
+        } else {
+            document.body.classList.remove('light-mode');
+            localStorage.setItem('light-mode', 'disabled');
+        }
+    });
+});

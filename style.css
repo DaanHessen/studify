@@ -19,7 +19,7 @@
     --title-color-dark: #b6b6b6;
     --text-color-dark: #3B3B3B;
     --body-color-dark: #181819;
-    --container-color-dark: hsl(232, 100%, 50%);
+    --container-color-dark: #e4e4e4;
     --border-color-dark: hsl(230, 25%, 80%);
 
     --body-font: 'Poppins', sans-serif;
@@ -49,7 +49,6 @@ body {
     transition: background-color 0.4s, color 0.4s;
 }
 
-/* Light mode styles */
 body.light-mode {
     background-color: var(--body-color);
     color: var(--text-color);
@@ -181,12 +180,12 @@ body.light-mode .nav__close {
     display: block;
 }
 
-.nav__link.active {
-    color: var(--first-color-dark);
-  }
-
 body.light-mode .nav__link {
     color: var(--title-color);
+}
+
+.nav__link.active {
+    color: var(--first-color-dark);
 }
 
 .nav__close {
@@ -313,6 +312,10 @@ body.light-mode .login__title {
     color: var(--title-color-dark);
 }
 
+body.light-mode .login__label {
+    color: var(--title-color);
+}
+
 .login__input {
     width: 100%;
     padding: .8rem;
@@ -394,10 +397,14 @@ body.light-mode .login__button {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+body.light-mode .login__google-button {
+    background-color: hsl(0, 79%, 68%);
+}
+
 .login__google-icon {
     width: 20px;
     height: 20px;
-    background-image: url('public/google.svg'); 
+    background-image: url('public/google.svg');
     background-size: cover;
 }
 
@@ -465,9 +472,10 @@ body.light-mode .login__forgot-password {
 }
 
 .visible {
-    display: block; 
+    display: block;
 }
 
+/* Media Queries */
 @media screen and (min-width: 576px) {
     .login {
       padding-top: 10rem;
@@ -500,48 +508,79 @@ body.light-mode .login__forgot-password {
     }
 }
 
-/* Switch styles */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+/* Footer Styles */
+.footer {
+    background-color: var(--body-color-dark);
+    color: var(--text-color-dark);
+    padding: 1.5rem;
+    text-align: center;
+    transition: background-color 0.4s, color 0.4s;
 }
-  
-.switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
+
+body.light-mode .footer {
+    background-color: var(--body-color);
+    color: var(--text-color);
 }
-  
-.slider {
-    position: absolute;
+
+/* Card Styles */
+.card {
+    background-color: var(--container-color-dark);
+    color: var(--text-color-dark);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.4s, color 0.4s;
+}
+
+body.light-mode .card {
+    background-color: var(--container-color);
+    color: var(--text-color);
+}
+
+/* Button Styles */
+button {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    transition: background-color 0.3s, color 0.3s;
 }
-  
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
+
+button.primary {
+    background-color: var(--first-color-dark);
+    color: #fff;
 }
-  
-input:checked + .slider {
-    background-color: #2196F3;
+
+body.light-mode button.primary {
+    background-color: var(--first-color);
 }
-  
-input:checked + .slider:before {
-    transform: translateX(26px);
+
+button.secondary {
+    background-color: var(--container-color-dark);
+    color: #fff;
+}
+
+body.light-mode button.secondary {
+    background-color: var(--container-color);
+}
+
+/* Input Styles */
+input, textarea {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    color: var(--text-color-dark);
+    background-color: var(--container-color-dark);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 5px;
+    padding: 0.75rem;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+body.light-mode input, body.light-mode textarea {
+    color: var(--text-color);
+    background-color: var(--container-color);
+    border-color: var(--border-color);
 }
