@@ -4,29 +4,36 @@
 /* base styles */
 :root {
     --header-height: 3.5rem;
-    --dark-mode: false;  
+    --dark-mode: true;  
 
-/* light mode, planning on making dark mode soon */
---first-color: hsl(230, 75%, 56%);
---title-color: hsl(230, 75%, 15%);
---text-color: hsl(230, 12%, 40%);
---body-color: hsl(0, 0%, 85%);
---container-color: hsl(232, 100%, 50%);
---border-color: hsl(230, 25%, 80%);
+    /* light mode */
+    --first-color: hsl(230, 75%, 56%);
+    --title-color: hsl(230, 75%, 15%);
+    --text-color: hsl(230, 12%, 40%);
+    --body-color: hsl(0, 0%, 85%);
+    --container-color: hsl(232, 100%, 50%);
+    --border-color: hsl(230, 25%, 80%);
 
---body-font: 'Poppins', sans-serif;
---h2-font-size: 1.25rem;
---normal-font-size: .938rem;
-  background-color: rgb(34, 34, 34);
-  transition: all .3s ease;
+    /* dark mode */
+    --first-color-dark: #317c78;
+    --title-color-dark: #b6b6b6;
+    --text-color-dark: #3B3B3B;
+    --body-color-dark: #181819;
+    --container-color-dark: hsl(232, 100%, 50%);
+    --border-color-dark: hsl(230, 25%, 80%);
 
---font-regular: 400;
---font-medium: 500;
---font-semi-bold: 600;
+    --body-font: 'Poppins', sans-serif;
+    --h2-font-size: 1.25rem;
+    --normal-font-size: .938rem;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
 
---z-fixed: 100;
---z-modal: 1000;
+    --z-fixed: 100;
+    --z-modal: 1000;
 
+    background-color: rgb(34, 34, 34);
+    transition: all .3s ease;
 }
 
 * {
@@ -37,17 +44,30 @@
 
 body {
     font-family: var(--body-font);
+    background-color: var(--body-color-dark);
+    color: var(--text-color-dark);
+    transition: background-color 0.4s, color 0.4s;
 }
 
-/* header, nav */
+/* Light mode styles */
+body.light-mode {
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--body-color);
+    background-color: var(--body-color-dark);
     box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15);
     z-index: var(--z-fixed);
+    transition: background-color 0.4s;
+}
+
+body.light-mode .header {
+    background-color: var(--body-color);
 }
 
 .nav ul {
@@ -67,13 +87,17 @@ a {
 }
 
 .nav__logo {
-    color: var(--title-color);
+    color: var(--title-color-dark);
     font-weight: var(--font-semi-bold);
     transition: color .4s;
     padding: 2rem;
     font-size: 1.5rem;
     flex: 0 0 auto;
     margin-right: -1.5rem;
+}
+
+body.light-mode .nav__logo {
+    color: var(--title-color);
 }
 
 .nav__actions {
@@ -88,13 +112,19 @@ a {
 .nav__toggle,
 .nav__close {
     font-size: 1.5rem;
-    color: var(--title-color);
+    color: var(--title-color-dark);
     cursor: pointer;
     transition: color .4s;
 }
 
+body.light-mode .nav__login,
+body.light-mode .nav__toggle,
+body.light-mode .nav__close {
+    color: var(--title-color);
+}
+
 :is(.nav__logo, .nav__login, .nav__toggle, .nav__link):hover {
-    color: var(--first-color);
+    color: var(--first-color-dark);
 }
 
 /* mobile */
@@ -103,7 +133,7 @@ a {
         position: fixed;
         top: -100%;
         left: 0;
-        background-color: var(--body-color);
+        background-color: var(--body-color-dark);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         width: 100%;
         padding-top: 3rem;
@@ -116,9 +146,12 @@ a {
         row-gap: 1rem;
     }
 
+    body.light-mode .nav__menu {
+        background-color: var(--body-color);
+    }
+
     .nav__list {
         flex-direction: column;
-        
     }
 }
 
@@ -135,7 +168,6 @@ a {
 @media screen and (max-width: 701px) {
     .nav__list {
         flex-direction: column; 
-        
     }
 
     .nav__item {
@@ -143,11 +175,20 @@ a {
     }
 }
 .nav__link {
-    color: var(--title-color);
+    color: var(--title-color-dark);
     font-weight: var(--font-semi-bold);
     transition: color .4s;
     display: block;
 }
+
+.nav__link.active {
+    color: var(--first-color-dark);
+  }
+
+body.light-mode .nav__link {
+    color: var(--title-color);
+}
+
 .nav__close {
     position: absolute;
     top: 10px;  
@@ -177,7 +218,6 @@ a {
 }
 
 /* login */
-
 .show-login-overlay {
     overflow: hidden;
 }
@@ -193,7 +233,6 @@ a {
     background-color: hsla(0, 0%, 0%, 0.8);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px); /* safari */
-
 }
 .login.show {
     display: flex;
@@ -202,7 +241,7 @@ a {
 }
 
 .login__container {
-    background-color: var(--body-color);
+    background-color: var(--body-color-dark);
     width: 100%;
     max-width: 420px; 
     padding: 1rem;
@@ -210,6 +249,10 @@ a {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
     position: relative; 
     animation: slideIn 0.5;
+}
+
+body.light-mode .login__container {
+    background-color: var(--body-color);
 }
 
 .login__form,
@@ -221,16 +264,20 @@ a {
     width: 90%;
     max-width: 360px;
     margin: auto;
-    background-color: var(--body-color);
+    background-color: var(--body-color-dark);
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 2rem;
-    padding-bottom:none;
+    padding-bottom: none;
     box-shadow: 0 8px 12px hsla(0, 0, 0, 0.25);
     border-radius: 8px;
     transition: transform .4s, box-shadow .4s;
     display: grid;
     gap: 1rem;
+}
+
+body.light-mode .login__form {
+    background-color: var(--body-color);
 }
 
 @keyframes slideIn {
@@ -246,9 +293,13 @@ a {
 
 .login__title {
     font-size: var(--h2-font-size);
-    color: var(--title-color);
+    color: var(--title-color-dark);
     text-align: center;
     margin-top: 15px;
+}
+
+body.light-mode .login__title {
+    color: var(--title-color);
 }
 
 .login__group {
@@ -259,7 +310,7 @@ a {
     font-weight: var(--font-medium);
     display: block;
     text-align: initial;
-    color: var(--font-medium);
+    color: var(--title-color-dark);
 }
 
 .login__input {
@@ -267,11 +318,19 @@ a {
     padding: .8rem;
     border: none;
     border-radius: 4px;
-    color: var(--text-color);
+    color: var(--text-color-dark);
     box-sizing: border-box;
 }
 
+body.light-mode .login__input {
+    color: var(--text-color);
+}
+
 .login__input::placeholder {
+    color: var(--text-color-dark);
+}
+
+body.light-mode .login__input::placeholder {
     color: var(--text-color);
 }
 
@@ -294,27 +353,30 @@ a {
 }
 
 .login__signup-button {
-    background-color: hsl(230, 65%, 45%);
+    background-color: var(--first-color-dark);
 }
 
 .login__signup-button:hover {
-    background-color: hsl(230, 75%, 55%);
+    background-color: #54ada9;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .login__button {
+    background-color: var(--first-color-dark);
+}
+
+body.light-mode .login__button {
     background-color: var(--first-color);
 }
 
 .login__button:hover {
-    background-color: hsl(230, 85%, 60%);
+    background-color: #54ada9;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .login__google-button {
     width: 100%;
     padding: 1rem;
-    
     background-color: #DB4437;
     display: flex;
     align-items: center;
@@ -345,9 +407,13 @@ a {
 }
 
 .login__link {
-    color: var(--first-color);
+    color: var(--first-color-dark);
     font-size: 1rem;
     text-align: center;
+}
+
+body.light-mode .login__link {
+    color: var(--first-color);
 }
 
 .login__close {
@@ -356,14 +422,22 @@ a {
     right: 10px;
     font-size: 24px;
     cursor: pointer;
+    color: var(--text-color-dark);
+}
+
+body.light-mode .login__close {
     color: var(--text-color);
 }
 
 .login__forgot-password {
     text-align: center;
-    color: var(--first-color);
+    color: var(--first-color-dark);
     text-decoration: none;
     cursor: pointer;
+}
+
+body.light-mode .login__forgot-password {
+    color: var(--first-color);
 }
 
 .login__forgot-password:hover {
@@ -399,8 +473,6 @@ a {
       padding-top: 10rem;
     }
 
-    
-  
     .login__form {
       max-width: 400px;
       margin-inline: auto;
@@ -426,4 +498,50 @@ a {
     .container {
       margin-inline: auto;
     }
+}
+
+/* Switch styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+  
+input:checked + .slider {
+    background-color: #2196F3;
+}
+  
+input:checked + .slider:before {
+    transform: translateX(26px);
 }

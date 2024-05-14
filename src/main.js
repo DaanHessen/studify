@@ -1,7 +1,6 @@
-
 import './view/pages/home-page';
 
-// JS for nenu for smaller devices
+// JS for menu for smaller devices
 const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
 const navClose = document.getElementById('nav-close');
@@ -54,3 +53,5 @@ document.addEventListener('click', function(event) {
         loginClose.classList.remove('visible');
     }
 });
+
+
