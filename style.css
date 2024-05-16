@@ -4,29 +4,27 @@
 /* base styles */
 :root {
     --header-height: 3.5rem;
-    --dark-mode: false;  
 
-/* light mode, planning on making dark mode soon */
---first-color: hsl(230, 75%, 56%);
---title-color: hsl(230, 75%, 15%);
---text-color: hsl(230, 12%, 40%);
---body-color: hsl(0, 0%, 85%);
---container-color: hsl(232, 100%, 50%);
---border-color: hsl(230, 25%, 80%);
+    /* dark mode */
+    --first-color-dark: #317c78;
+    --title-color-dark: #b6b6b6;
+    --text-color-dark: #3B3B3B;
+    --body-color-dark: #181819;
+    --container-color-dark: #e4e4e4;
+    --border-color-dark: hsl(230, 25%, 80%);
 
---body-font: 'Poppins', sans-serif;
---h2-font-size: 1.25rem;
---normal-font-size: .938rem;
-  background-color: rgb(34, 34, 34);
-  transition: all .3s ease;
+    --body-font: 'Poppins', sans-serif;
+    --h2-font-size: 1.25rem;
+    --normal-font-size: .938rem;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
 
---font-regular: 400;
---font-medium: 500;
---font-semi-bold: 600;
+    --z-fixed: 100;
+    --z-modal: 1000;
 
---z-fixed: 100;
---z-modal: 1000;
-
+    background-color: rgb(34, 34, 34);
+    transition: all .3s ease;
 }
 
 * {
@@ -37,18 +35,23 @@
 
 body {
     font-family: var(--body-font);
+    background-color: var(--body-color-dark);
+    color: var(--text-color-dark);
+    transition: background-color 0.4s, color 0.4s;
 }
 
-/* header, nav */
+
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--body-color);
+    background-color: var(--body-color-dark);
     box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15);
     z-index: var(--z-fixed);
+    transition: background-color 0.4s;
 }
+
 
 .nav ul {
     list-style: none;
@@ -67,7 +70,7 @@ a {
 }
 
 .nav__logo {
-    color: var(--title-color);
+    color: var(--title-color-dark);
     font-weight: var(--font-semi-bold);
     transition: color .4s;
     padding: 2rem;
@@ -88,13 +91,13 @@ a {
 .nav__toggle,
 .nav__close {
     font-size: 1.5rem;
-    color: var(--title-color);
+    color: var(--title-color-dark);
     cursor: pointer;
     transition: color .4s;
 }
 
 :is(.nav__logo, .nav__login, .nav__toggle, .nav__link):hover {
-    color: var(--first-color);
+    color: var(--first-color-dark);
 }
 
 /* mobile */
@@ -103,7 +106,7 @@ a {
         position: fixed;
         top: -100%;
         left: 0;
-        background-color: var(--body-color);
+        background-color: var(--body-color-dark);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         width: 100%;
         padding-top: 3rem;
@@ -118,7 +121,6 @@ a {
 
     .nav__list {
         flex-direction: column;
-        
     }
 }
 
@@ -135,7 +137,6 @@ a {
 @media screen and (max-width: 701px) {
     .nav__list {
         flex-direction: column; 
-        
     }
 
     .nav__item {
@@ -143,11 +144,16 @@ a {
     }
 }
 .nav__link {
-    color: var(--title-color);
+    color: var(--title-color-dark);
     font-weight: var(--font-semi-bold);
     transition: color .4s;
     display: block;
 }
+
+.nav__link.active {
+    color: var(--first-color-dark);
+}
+
 .nav__close {
     position: absolute;
     top: 10px;  
@@ -177,7 +183,6 @@ a {
 }
 
 /* login */
-
 .show-login-overlay {
     overflow: hidden;
 }
@@ -193,7 +198,6 @@ a {
     background-color: hsla(0, 0%, 0%, 0.8);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px); /* safari */
-
 }
 .login.show {
     display: flex;
@@ -202,7 +206,7 @@ a {
 }
 
 .login__container {
-    background-color: var(--body-color);
+    background-color: var(--body-color-dark);
     width: 100%;
     max-width: 420px; 
     padding: 1rem;
@@ -221,11 +225,11 @@ a {
     width: 90%;
     max-width: 360px;
     margin: auto;
-    background-color: var(--body-color);
+    background-color: var(--body-color-dark);
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 2rem;
-    padding-bottom:none;
+    padding-bottom: none;
     box-shadow: 0 8px 12px hsla(0, 0, 0, 0.25);
     border-radius: 8px;
     transition: transform .4s, box-shadow .4s;
@@ -246,7 +250,7 @@ a {
 
 .login__title {
     font-size: var(--h2-font-size);
-    color: var(--title-color);
+    color: var(--title-color-dark);
     text-align: center;
     margin-top: 15px;
 }
@@ -259,7 +263,7 @@ a {
     font-weight: var(--font-medium);
     display: block;
     text-align: initial;
-    color: var(--font-medium);
+    color: var(--title-color-dark);
 }
 
 .login__input {
@@ -267,12 +271,12 @@ a {
     padding: .8rem;
     border: none;
     border-radius: 4px;
-    color: var(--text-color);
+    color: var(--text-color-dark);
     box-sizing: border-box;
 }
 
 .login__input::placeholder {
-    color: var(--text-color);
+    color: var(--text-color-dark);
 }
 
 .login__actions {
@@ -294,27 +298,26 @@ a {
 }
 
 .login__signup-button {
-    background-color: hsl(230, 65%, 45%);
+    background-color: var(--first-color-dark);
 }
 
 .login__signup-button:hover {
-    background-color: hsl(230, 75%, 55%);
+    background-color: #54ada9;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .login__button {
-    background-color: var(--first-color);
+    background-color: var(--first-color-dark);
 }
 
 .login__button:hover {
-    background-color: hsl(230, 85%, 60%);
+    background-color: #54ada9;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .login__google-button {
     width: 100%;
     padding: 1rem;
-    
     background-color: #DB4437;
     display: flex;
     align-items: center;
@@ -335,7 +338,7 @@ a {
 .login__google-icon {
     width: 20px;
     height: 20px;
-    background-image: url('public/google.svg'); 
+    background-image: url('public/google.svg');
     background-size: cover;
 }
 
@@ -345,7 +348,7 @@ a {
 }
 
 .login__link {
-    color: var(--first-color);
+    color: var(--first-color-dark);
     font-size: 1rem;
     text-align: center;
 }
@@ -356,12 +359,12 @@ a {
     right: 10px;
     font-size: 24px;
     cursor: pointer;
-    color: var(--text-color);
+    color: var(--text-color-dark);
 }
 
 .login__forgot-password {
     text-align: center;
-    color: var(--first-color);
+    color: var(--first-color-dark);
     text-decoration: none;
     cursor: pointer;
 }
@@ -391,16 +394,15 @@ a {
 }
 
 .visible {
-    display: block; 
+    display: block;
 }
 
+/* Media Queries */
 @media screen and (min-width: 576px) {
     .login {
       padding-top: 10rem;
     }
 
-    
-  
     .login__form {
       max-width: 400px;
       margin-inline: auto;
@@ -427,3 +429,57 @@ a {
       margin-inline: auto;
     }
 }
+
+/* Footer Styles */
+.footer {
+    background-color: var(--body-color-dark);
+    color: var(--text-color-dark);
+    padding: 1.5rem;
+    text-align: center;
+    transition: background-color 0.4s, color 0.4s;
+}
+
+/* Card Styles */
+.card {
+    background-color: var(--container-color-dark);
+    color: var(--text-color-dark);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.4s, color 0.4s;
+}
+
+/* Button Styles */
+button {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button.primary {
+    background-color: var(--first-color-dark);
+    color: #fff;
+}
+
+button.secondary {
+    background-color: var(--container-color-dark);
+    color: #fff;
+}
+
+/* Input Styles */
+input, textarea {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    color: var(--text-color-dark);
+    background-color: var(--container-color-dark);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 5px;
+    padding: 0.75rem;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
