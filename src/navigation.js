@@ -73,3 +73,12 @@ navLinks.forEach(link => {
   });
 });
 
+// sidebar button (for smaller devices on podcast page)
+document.addEventListener('DOMContentLoaded', function() {
+  const sidebar = document.getElementById('sidebar');
+  const toggleButton = document.getElementById('sidebar-toggle');
+
+  toggleButton.addEventListener('click', function () {
+      sidebar.classList.toggle('active');
+  });
+});
