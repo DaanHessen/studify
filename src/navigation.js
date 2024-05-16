@@ -5,6 +5,21 @@ const navClose = document.getElementById('nav-close');
 const loginBtn = document.getElementById('login-btn');
 const login = document.getElementById('login');
 const loginClose = document.getElementById('login-close');
+const mainContent = document.getElementById('main-content');
+
+
+// load main content to page
+const loadContent = async (url) => {
+  try {
+    const response = await fetch(url);
+    const content = await response.text();
+    mainContent.innerHTML = content;
+  } catch (error) {
+    console.error('Error: ', error);
+  }
+};
+
+loadContent('nested/podcasts.html')
 
 // Open Menu
 navToggle.addEventListener('click', () => {
@@ -40,11 +55,19 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Highlight the active page link
+// content handler
 const navLinks = document.querySelectorAll('.nav__link');
 
 navLinks.forEach(link => {
-  if (link.href === window.location.href) {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    loadContent(`nested/${href}.html`);
+
+    // highlight active page
+    navLinks.forEach(navLink => navLink.classList.remove('active'));
     link.classList.add('active');
-  }
-});
+  })
+
+})
+
