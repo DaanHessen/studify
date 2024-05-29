@@ -528,3 +528,103 @@ a {
 .sidebar-overlay.active {
     display: block;
 }
+
+
+/* podcasts.html */
+
+#main-content {
+    margin-left: 120px;
+    margin-top: 15px;
+    padding: 20px;
+    background-color: var(--body-color-dark);
+    min-height: calc(100vh - var(--header-height));
+    position: relative;
+}
+
+#main-content h1 {
+    font-size: 1.5rem;
+    color: var(--title-color-dark);
+    margin-bottom: 20px;
+    font-weight: var(--font-semi-bold);
+    display: inline-block;
+}
+
+.show-more {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    color: var(--first-color-dark);
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.show-more:hover {
+    color: #54ada9;
+}
+
+.podcast-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    position: relative;
+}
+
+.podcast {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid var(--border-color-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--container-color-dark);
+    padding: 15px;
+    position: relative;
+    height: 100px; /* Fixed height initially */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s 0.3s;
+}
+
+.podcast:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    height: auto; /* Expand to show full content */
+    z-index: var(--z-modal); /* Ensure it overlaps other items */
+}
+
+.podcast img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 8px;
+}
+
+.podcast-content {
+    flex: 1;
+    padding: 0;
+    overflow: hidden;
+}
+
+.podcast-content h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-color-dark);
+}
+
+.podcast-content p {
+    margin: 5px 0;
+    display: none; 
+}
+
+.podcast:hover .podcast-content p {
+    display: block; 
+}
+
+.podcast-content .author,
+.podcast-content .genre {
+    font-size: 0.9em;
+    color: var(--title-color-dark);
+}
