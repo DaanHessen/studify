@@ -551,61 +551,54 @@ a {
 
 .show-more {
     position: absolute;
-    top: 20px;
+    top: 30px;
     right: 20px;
-    font-size: var(--normal-font-size);
-    font-weight: var(--font-medium);
+    text-align: center;
     color: var(--first-color-dark);
+    text-decoration: none;
     cursor: pointer;
-    text-decoration: underline;
-    transition: color 0.3s ease;
 }
 
 .show-more:hover {
-    color: #54ada9;
+    text-decoration: underline;
 }
 
 .podcast-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 10px;
     position: relative;
 }
 
 .podcast {
     display: flex;
-    align-items: center;
+    align-items: flex-start; 
     justify-content: flex-start;
     border: 1px solid var(--border-color-dark);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: var(--container-color-dark);
-    padding: 15px;
+    padding: 10px;
     position: relative;
-    height: 100px; /* Fixed height initially */
+    height: 180px; 
     transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s 0.3s;
+    cursor: pointer;
 }
 
 .podcast:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    height: auto; /* Expand to show full content */
-    z-index: var(--z-modal); /* Ensure it overlaps other items */
-}
-
-.podcast img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-right: 20px;
-    border-radius: 8px;
 }
 
 .podcast-content {
     flex: 1;
-    padding: 0;
+    padding: 10px; 
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .podcast-content h3 {
@@ -616,15 +609,29 @@ a {
 
 .podcast-content p {
     margin: 5px 0;
-    display: none; 
-}
-
-.podcast:hover .podcast-content p {
-    display: block; 
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2em; 
+    max-height: 3.6em; 
 }
 
 .podcast-content .author,
 .podcast-content .genre {
     font-size: 0.9em;
     color: var(--title-color-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0; 
+}
+
+.podcast-content .genre {
+    font-style: italic;
+}
+
+.section {
+    margin-bottom: 70px;
 }
