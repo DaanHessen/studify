@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>podcasts</title>
+    <title>Podcasts</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,207 +23,65 @@
                 <li>filter 2</li>
             </ul>
         </div>
-      </div>
+    </div>
     <div id="main-content">
-        <div class="podcast-section">
+        <div class="podcast-section" id="popular-podcasts">
             <div class="section-header">
                 <h1>populaire podcasts</h1>
                 <a href="#" class="show-more show-more-popular">alle populaire podcasts</a>
             </div>
-            <div class="podcast-container">
-                <div class="podcast">
-                <a href="https://podimo.com/nl/shows/de-macht-van-het-verleden" class="podcast-content" target="_blank">
-                    <h3>De macht van het verleden</h3>
-                    <p>In "De macht van het verleden" tonen Ivo van de Wijdeven en Thom Aalmoes hoe leiders zoals Poetin en Xi Jinping geschiedenis manipuleren om hun macht te versterken.</p>
-                    <p class="author">Ivo van de Wijdeven, Thom Aalmoes</p>
-                    <p class="genre">Geschiedenis</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/episode/54SJkaVejrE4RWgeTuZwvH?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=fe4bf01aa60e4262" class="podcast-content" target="_blank">
-                    <h3>Nerdland</h3>
-                    <p>Nerdland, gepresenteerd door Lieven Scheire, verkent wetenschap, technologie en nerd-cultuur op een toegankelijke en humoristische manier, boeiend voor alle luisteraars.</p>
-                    <p class="author">Lieven Scheire</p>
-                    <p class="genre">Wetenschap, Technologie</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/episode/2J2K8UElkZ4SgYhgBdT1HR?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=c40a9f41fd2542e0" class="podcast-content" target="_blank">
-                    <h3>De Universiteit van Vlaanderen</h3>
-                    <p>De podcast Universiteit van Vlaanderen, gepresenteerd door Vlaamse leraren, biedt begrijpelijke info over diverse vakgebieden zoals wetenschap, geschiedenis, kunst en meer.</p>
-                    <p class="author">Universiteit van Vlaanderen</p>
-                    <p class="genre">Verschillend</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://podimo.com/nl/shows/oorlogshandelingen" class="podcast-content" target="_blank">
-                    <h3>Oorlogshandelingen</h3>
-                    <p>Studievrienden Marcel van Roosmalen en Roel Gootzen, schrijver en geschiedenisdocent, verkennen kijvend en lachend WOII-monumenten en onze kijk op geschiedenis.</p>
-                    <p class="author">Marcel van Roosmalen, Roel Gootzen</p>
-                    <p class="genre">Geschiedenis</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/show/2sqXXRb21xL7ACjX8fHofN?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=8fabdde9c411485e" class="podcast-content" target="_blank">
-                    <h3>De Podcast Psycholoog</h3>
-                    <p>De Podcast Psycholoog geeft educatieve inzichten en advies voor betere mentale gezondheid, met thema's zoals fobieën, eetproblemen en relaties.</p>
-                    <p class="author">De Podcast Psycholoog</p>
-                    <p class="genre">Psychologie</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/episode/0iXqtRSmVldvRpkdQnSyLF?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=a9fa8a3148fe42ac" class="podcast-content" target="_blank">
-                    <h3>De Universiteit van Nederland</h3>
-                    <p>De podcast De Universiteit van Nederland deelt kennis van professoren over specifieke onderwerpen, vergelijkbaar met De Universiteit van Vlaanderen, maar in het Nederlands.</p>
-                    <p class="author">Universiteit van Nederland</p>
-                    <p class="genre">Verschillend</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
+            <div class="podcast-container" id="popular-container">
+                <!-- Podcast template -->
+                <div class="podcast template">
+                    <a href="%link%" class="podcast-content" target="_blank">
+                        <h3>%title%</h3>
+                        <p>%description%</p>
+                        <p class="author">%author%</p>
+                        <p class="genre">%genre%</p>
+                    </a>
+                    <div class="overlay">Doorgaan naar externe website</div>
+                </div>
             </div>
         </div>
-        </div>
 
-
-
-        <div class="podcast-section">
+        <div class="podcast-section" id="recommended-podcasts">
             <div class="section-header">
                 <h1>aanbevolen podcasts</h1>
                 <a href="#" class="show-more show-more-recommendations">alle aanbevolen podcasts</a>
             </div>
-            <div class="podcast-container">
-                <div class="podcast">
-                <a href="https://podimo.com/nl/shows/de-macht-van-het-verleden" class="podcast-content" target="_blank">
-                    <h3>De macht van het verleden</h3>
-                    <p>In "De macht van het verleden" tonen Ivo van de Wijdeven en Thom Aalmoes hoe leiders zoals Poetin en Xi Jinping geschiedenis manipuleren om hun macht te versterken.</p>
-                    <p class="author">Ivo van de Wijdeven, Thom Aalmoes</p>
-                    <p class="genre">Geschiedenis</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/episode/54SJkaVejrE4RWgeTuZwvH?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=fe4bf01aa60e4262" class="podcast-content" target="_blank">
-                    <h3>Nerdland</h3>
-                    <p>Nerdland, gepresenteerd door Lieven Scheire, verkent wetenschap, technologie en nerd-cultuur op een toegankelijke en humoristische manier, boeiend voor alle luisteraars.</p>
-                    <p class="author">Lieven Scheire</p>
-                    <p class="genre">Wetenschap, Technologie</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/episode/2J2K8UElkZ4SgYhgBdT1HR?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=c40a9f41fd2542e0" class="podcast-content" target="_blank">
-                    <h3>De Universiteit van Vlaanderen</h3>
-                    <p>De podcast Universiteit van Vlaanderen, gepresenteerd door Vlaamse leraren, biedt begrijpelijke info over diverse vakgebieden zoals wetenschap, geschiedenis, kunst en meer.</p>
-                    <p class="author">Universiteit van Vlaanderen</p>
-                    <p class="genre">Verschillend</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://podimo.com/nl/shows/oorlogshandelingen" class="podcast-content" target="_blank">
-                    <h3>Oorlogshandelingen</h3>
-                    <p>Studievrienden Marcel van Roosmalen en Roel Gootzen, schrijver en geschiedenisdocent, verkennen kijvend en lachend WOII-monumenten en onze kijk op geschiedenis.</p>
-                    <p class="author">Marcel van Roosmalen, Roel Gootzen</p>
-                    <p class="genre">Geschiedenis</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/show/2sqXXRb21xL7ACjX8fHofN?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=8fabdde9c411485e" class="podcast-content" target="_blank">
-                    <h3>De Podcast Psycholoog</h3>
-                    <p>De Podcast Psycholoog geeft educatieve inzichten en advies voor betere mentale gezondheid, met thema's zoals fobieën, eetproblemen en relaties.</p>
-                    <p class="author">De Podcast Psycholoog</p>
-                    <p class="genre">Psychologie</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/episode/0iXqtRSmVldvRpkdQnSyLF?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=a9fa8a3148fe42ac" class="podcast-content" target="_blank">
-                    <h3>De Universiteit van Nederland</h3>
-                    <p>De podcast De Universiteit van Nederland deelt kennis van professoren over specifieke onderwerpen, vergelijkbaar met De Universiteit van Vlaanderen, maar in het Nederlands.</p>
-                    <p class="author">Universiteit van Nederland</p>
-                    <p class="genre">Verschillend</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
+            <div class="podcast-container" id="recommended-container">
+                <!-- Podcast template -->
+                <div class="podcast template">
+                    <a href="%link%" class="podcast-content" target="_blank">
+                        <h3>%title%</h3>
+                        <p>%description%</p>
+                        <p class="author">%author%</p>
+                        <p class="genre">%genre%</p>
+                    </a>
+                    <div class="overlay">Doorgaan naar externe website</div>
+                </div>
             </div>
         </div>
-        </div>
 
-
-
-
-        <div class="podcast-section">
+        <div class="podcast-section" id="new-podcasts">
             <div class="section-header">
                 <h1>nieuwe podcasts</h1>
                 <a href="#" class="show-more show-more-new">alle nieuwe podcasts</a>
             </div>
-            <div class="podcast-container">
-                <div class="podcast">
-                <a href="https://podimo.com/nl/shows/de-macht-van-het-verleden" class="podcast-content" target="_blank">
-                    <h3>De macht van het verleden</h3>
-                    <p>In "De macht van het verleden" tonen Ivo van de Wijdeven en Thom Aalmoes hoe leiders zoals Poetin en Xi Jinping geschiedenis manipuleren om hun macht te versterken.</p>
-                    <p class="author">Ivo van de Wijdeven, Thom Aalmoes</p>
-                    <p class="genre">Geschiedenis</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/episode/54SJkaVejrE4RWgeTuZwvH?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=fe4bf01aa60e4262" class="podcast-content" target="_blank">
-                    <h3>Nerdland</h3>
-                    <p>Nerdland, gepresenteerd door Lieven Scheire, verkent wetenschap, technologie en nerd-cultuur op een toegankelijke en humoristische manier, boeiend voor alle luisteraars.</p>
-                    <p class="author">Lieven Scheire</p>
-                    <p class="genre">Wetenschap, Technologie</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/episode/2J2K8UElkZ4SgYhgBdT1HR?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=c40a9f41fd2542e0" class="podcast-content" target="_blank">
-                    <h3>De Universiteit van Vlaanderen</h3>
-                    <p>De podcast Universiteit van Vlaanderen, gepresenteerd door Vlaamse leraren, biedt begrijpelijke info over diverse vakgebieden zoals wetenschap, geschiedenis, kunst en meer.</p>
-                    <p class="author">Universiteit van Vlaanderen</p>
-                    <p class="genre">Verschillend</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://podimo.com/nl/shows/oorlogshandelingen" class="podcast-content" target="_blank">
-                    <h3>Oorlogshandelingen</h3>
-                    <p>Studievrienden Marcel van Roosmalen en Roel Gootzen, schrijver en geschiedenisdocent, verkennen kijvend en lachend WOII-monumenten en onze kijk op geschiedenis.</p>
-                    <p class="author">Marcel van Roosmalen, Roel Gootzen</p>
-                    <p class="genre">Geschiedenis</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/show/2sqXXRb21xL7ACjX8fHofN?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=8fabdde9c411485e" class="podcast-content" target="_blank">
-                    <h3>De Podcast Psycholoog</h3>
-                    <p>De Podcast Psycholoog geeft educatieve inzichten en advies voor betere mentale gezondheid, met thema's zoals fobieën, eetproblemen en relaties.</p>
-                    <p class="author">De Podcast Psycholoog</p>
-                    <p class="genre">Psychologie</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
-            </div>
-            <div class="podcast">
-                <a href="https://open.spotify.com/episode/0iXqtRSmVldvRpkdQnSyLF?go=1&sp_cid=f8a774b15bfb097d5f4abce448e40a9d&utm_source=embed_player_p&utm_medium=desktop&nd=1&dlsi=a9fa8a3148fe42ac" class="podcast-content" target="_blank">
-                    <h3>De Universiteit van Nederland</h3>
-                    <p>De podcast De Universiteit van Nederland deelt kennis van professoren over specifieke onderwerpen, vergelijkbaar met De Universiteit van Vlaanderen, maar in het Nederlands.</p>
-                    <p class="author">Universiteit van Nederland</p>
-                    <p class="genre">Verschillend</p>
-                </a>
-                <div class="overlay">Doorgaan naar externe website</div>
+            <div class="podcast-container" id="new-container">
+                <!-- Podcast template -->
+                <div class="podcast template">
+                    <a href="%link%" class="podcast-content" target="_blank">
+                        <h3>%title%</h3>
+                        <p>%description%</p>
+                        <p class="author">%author%</p>
+                        <p class="genre">%genre%</p>
+                    </a>
+                    <div class="overlay">Doorgaan naar externe website</div>
+                </div>
             </div>
         </div>
-        </div>
-
     </div>
-    <script type="module" src="src/navigation.js"></script>
-    <script type="module" src="src/main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
-
-
-<!-- uiteinedelijk gaat dit automatisch en hoeft niet elke podcast handmatig ingevoerd te worden -->
