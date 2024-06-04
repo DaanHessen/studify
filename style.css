@@ -47,9 +47,18 @@ body {
     left: 0;
     width: 100%;
     background-color: var(--body-color-dark);
-    box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15);
     z-index: var(--z-fixed);
     transition: background-color 0.4s;
+}
+
+.header {
+    border-bottom: 1px solid hsla(0, 0%, 25%, 0.7);
+    z-index: var(--z-modal);
+}
+
+.sidebar {
+    border-right: 1px solid hsla(0, 0%, 25%, 0.7);
+    z-index: var(--z-modal);
 }
 
 
@@ -470,6 +479,10 @@ a {
     color: var(--first-color-dark);
 }
 
+.sidebar-section ul .nav__link.active {
+    color: var(--first-color-dark) !important;
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
     .sidebar {
@@ -544,15 +557,16 @@ a {
 #main-content h1 {
     font-size: 1.5rem;
     color: var(--title-color-dark);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: var(--font-semi-bold);
     display: inline-block;
+
 }
 
 .show-more {
     position: absolute;
-    top: 30px;
-    right: 20px;
+    top: 20px;
+    right: 5px;
     text-align: center;
     color: var(--first-color-dark);
     text-decoration: none;
@@ -568,17 +582,22 @@ a {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     position: relative;
+    margin-bottom: 65px;
+}
+
+.podcast-container a {
+    text-decoration: inherit;
+    color: inherit;
 }
 
 .podcast {
-    display: flex;
+    display: relative;
     align-items: flex-start; 
     justify-content: flex-start;
-    border: 1px solid var(--border-color-dark);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: var(--container-color-dark);
+    background-color: rgba(224, 224, 224, 0.8);
     padding: 10px;
     position: relative;
     height: 180px; 
@@ -589,6 +608,25 @@ a {
 .podcast:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.podcast .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* semi-transparent black */
+    color: #fff; /* white text */
+    text-align: center;
+    padding: 5px;
+    opacity: 0; /* initially hidden */
+    transition: opacity 0.3s ease; /* animate visibility change */
+    font-size: 15px;
+    font-style:italic;
+}
+
+.podcast:hover .overlay {
+    opacity: 1; /* visible on hover */
 }
 
 .podcast-content {
@@ -605,6 +643,7 @@ a {
     margin: 0;
     font-size: 1.2rem;
     color: var(--text-color-dark);
+    text-decoration: none;
 }
 
 .podcast-content p {
@@ -616,12 +655,13 @@ a {
     text-overflow: ellipsis;
     line-height: 1.2em; 
     max-height: 3.6em; 
+    text-decoration: none;
 }
 
 .podcast-content .author,
 .podcast-content .genre {
     font-size: 0.9em;
-    color: var(--title-color-dark);
+    color: var(--text-color-dark);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -635,3 +675,8 @@ a {
 .section {
     margin-bottom: 70px;
 }
+.podcast-section {
+    position: relative;
+}
+
+
