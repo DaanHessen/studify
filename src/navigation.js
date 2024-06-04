@@ -1,84 +1,198 @@
-const navToggle = document.getElementById('nav-toggle');
-const navMenu = document.getElementById('nav-menu');
-const navClose = document.getElementById('nav-close');
-const loginBtn = document.getElementById('login-btn');
-const login = document.getElementById('login');
-const loginClose = document.getElementById('login-close');
 const mainContent = document.getElementById('main-content');
 
-// highlight active page
-const highlightLink = (page) => {
-  const navLinks = document.querySelectorAll('.nav__link');
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === page) {
-      link.classList.add('active');
+// Function to initialize podcast logic
+const initializePodcastLogic = () => {
+    console.log("Initializing podcast logic");
+
+    const popularContainer = document.getElementById("popular-container");
+    const recommendedContainer = document.getElementById("recommended-container");
+    const newContainer = document.getElementById("new-container");
+
+    console.log("popularContainer:", popularContainer);
+    console.log("recommendedContainer:", recommendedContainer);
+    console.log("newContainer:", newContainer);
+
+    if (!popularContainer || !recommendedContainer || !newContainer) {
+        console.error("One or more containers are missing in the DOM.");
+        return;
     }
-  });
+
+    const popularTemplate = document.querySelector("#popular-container .template");
+    const recommendedTemplate = document.querySelector("#recommended-container .template");
+    const newTemplate = document.querySelector("#new-container .template");
+
+    console.log("popularTemplate:", popularTemplate);
+    console.log("recommendedTemplate:", recommendedTemplate);
+    console.log("newTemplate:", newTemplate);
+
+    if (!popularTemplate || !recommendedTemplate || !newTemplate) {
+        console.error("One or more templates are missing.");
+        return;
+    }
+
+    // Hide templates
+    popularTemplate.style.display = 'none';
+    recommendedTemplate.style.display = 'none';
+    newTemplate.style.display = 'none';
+
+    const fillTemplate = (template, data) => {
+        let filledTemplate = template.outerHTML;
+        for (let key in data) {
+            const placeholder = new RegExp(`%${key}%`, 'g');
+            filledTemplate = filledTemplate.replace(placeholder, data[key]);
+        }
+        return filledTemplate;
+    };
+
+    const createPodcastElement = (podcast, template) => {
+        const podcastDiv = document.createElement("div");
+        podcastDiv.innerHTML = fillTemplate(template, podcast);
+        const podcastElement = podcastDiv.firstElementChild;
+        podcastElement.classList.remove("template");
+        podcastElement.style.display = 'block';
+        return podcastElement;
+    };
+
+    const fetchAndDisplayPodcasts = () => {
+        console.log("Fetching podcasts for containers");
+        fetch("http://localhost:5001/fetch_podcasts")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Podcasts fetched successfully:", data);
+
+                // Clear existing content
+                popularContainer.innerHTML = '';
+                recommendedContainer.innerHTML = '';
+                newContainer.innerHTML = '';
+
+                data.popular.slice(0, 6).forEach(podcast => {
+                    const podcastElement = createPodcastElement(podcast, popularTemplate);
+                    popularContainer.appendChild(podcastElement);
+                });
+
+                data.recommended.slice(0, 6).forEach(podcast => {
+                    const podcastElement = createPodcastElement(podcast, recommendedTemplate);
+                    recommendedContainer.appendChild(podcastElement);
+                });
+
+                data.new.slice(0, 6).forEach(podcast => {
+                    const podcastElement = createPodcastElement(podcast, newTemplate);
+                    newContainer.appendChild(podcastElement);
+                });
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    };
+
+    fetchAndDisplayPodcasts();
 };
 
-// load main content to page
+// Function to highlight active page
+const highlightLink = (page) => {
+    const navLinks = document.querySelectorAll('.nav__link');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === page) {
+            link.classList.add('active');
+        }
+    });
+};
+
+// Load main content to page
 const loadContent = async (url) => {
-  try {
-    const response = await fetch(url);
-    const content = await response.text();
-    mainContent.innerHTML = content;
-  } catch (error) {
-    console.error('Error: ', error);
-  }
+    try {
+        const response = await fetch(url);
+        const content = await response.text();
+        mainContent.innerHTML = content;
+
+        // Reinitialize podcast logic if the podcasts section is detected
+        if (document.querySelector("#popular-container")) {
+            initializePodcastLogic();
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+    }
 };
 
+// Initial content load
 const defaultPage = 'podcasts';
 loadContent(`nested/${defaultPage}.html`).then(() => highlightLink(defaultPage));
 
+// Observe changes to main content
+const observer = new MutationObserver(() => {
+    if (document.querySelector("#popular-container")) {
+        initializePodcastLogic();
+    }
+});
+observer.observe(mainContent, { childList: true, subtree: true });
 
-// open & closing of hamburger menu / login form
+// Event listeners for navigation
+const navLinks = document.querySelectorAll('.nav__link');
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('data-page');
+        loadContent(`nested/${href}`).then(() => highlightLink(href));
+    });
+});
+
+// JS for menu for smaller devices
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('nav-menu');
+const navClose = document.getElementById('nav-close');
+
 navToggle.addEventListener('click', () => {
-  navMenu.classList.add('show-menu');
+    if (window.innerWidth <= 1023) {
+        navMenu.classList.add('show-menu');
+        toggleNavClose();
+    }
 });
 
 navClose.addEventListener('click', () => {
-  navMenu.classList.remove('show-menu');
+    navMenu.classList.remove('show-menu');
+    toggleNavClose();
 });
 
+function toggleNavClose() {
+    const isMenuVisible = navMenu.classList.contains('show-menu');
+    navClose.classList.toggle('visible', isMenuVisible);
+}
+
+const loginBtn = document.getElementById('login-btn');
+const login = document.getElementById('login');
+const loginClose = document.getElementById('login-close');
+const body = document.body;
+
 loginBtn.addEventListener('click', () => {
-  login.classList.add('show-login');
+    login.classList.add('show-login');
+    toggleNavClose();
 });
 
 loginClose.addEventListener('click', () => {
-  login.classList.remove('show-login');
-});
-
-// close hamburger menu / login form when clicking outside of container
-document.addEventListener('click', (e) => {
-  if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-    navMenu.classList.remove('show-menu');
-  }
-});
-
-document.addEventListener('click', (e) => {
-  if (!login.contains(e.target) && !loginBtn.contains(e.target)) {
     login.classList.remove('show-login');
-  }
+    toggleNavClose();
 });
 
-// content handler
-const navLinks = document.querySelectorAll('.nav__link');
-
-navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const href = link.getAttribute('href');
-    loadContent(`nested/${href}.html`).then(() => highlightLink(href));
-  });
+// Close login form when clicking outside of it
+document.addEventListener('click', function(event) {
+    const loginContainer = document.querySelector('.login__container');
+    if (loginContainer && !loginContainer.contains(event.target) && !event.target.matches('#login-btn')) {
+        login.classList.remove('show-login');
+        body.classList.remove('show-login-overlay');
+        loginClose.classList.remove('visible');
+    }
 });
 
-// sidebar button (for smaller devices on podcast page)
+// Sidebar button (for smaller devices on podcast page)
 document.addEventListener('DOMContentLoaded', function() {
-  const sidebar = document.getElementById('sidebar');
-  const toggleButton = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const toggleButton = document.getElementById('sidebar-toggle');
 
-  toggleButton.addEventListener('click', function () {
-      sidebar.classList.toggle('active');
-  });
+    toggleButton.addEventListener('click', function () {
+        sidebar.classList.toggle('active');
+    });
 });
