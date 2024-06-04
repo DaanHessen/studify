@@ -161,22 +161,33 @@ function toggleNavClose() {
     const isMenuVisible = navMenu.classList.contains('show-menu');
     navClose.classList.toggle('visible', isMenuVisible);
 }
-
 const loginBtn = document.getElementById('login-btn');
 const login = document.getElementById('login');
 const loginClose = document.getElementById('login-close');
 const body = document.body;
 
-loginBtn.addEventListener('click', () => {
-    login.classList.add('show-login');
-    toggleNavClose();
-});
+if (loginBtn && login && loginClose) {
+    loginBtn.addEventListener('click', () => {
+        login.classList.add('show-login');
+        body.classList.add('show-login-overlay'); // Ensure body gets overlay class
+    });
 
-loginClose.addEventListener('click', () => {
-    login.classList.remove('show-login');
-    toggleNavClose();
-});
+    loginClose.addEventListener('click', () => {
+        login.classList.remove('show-login');
+        body.classList.remove('show-login-overlay'); // Remove overlay class from body
+    });
 
+    // Close login form when clicking outside of it
+    document.addEventListener('click', function(event) {
+        const loginContainer = document.querySelector('.login__container');
+        if (loginContainer && !loginContainer.contains(event.target) && !event.target.matches('#login-btn')) {
+            login.classList.remove('show-login');
+            body.classList.remove('show-login-overlay');
+        }
+    });
+} else {
+    console.error('One or more login elements are missing.');
+}
 // Close login form when clicking outside of it
 document.addEventListener('click', function(event) {
     const loginContainer = document.querySelector('.login__container');
