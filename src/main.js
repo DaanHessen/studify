@@ -1,4 +1,3 @@
-
 // JS for menu for smaller devices
 const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
@@ -53,7 +52,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// dynamic loading podcasts
+// JS for menu for smaller devices
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM fully loaded and parsed");
 

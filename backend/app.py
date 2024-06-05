@@ -29,7 +29,7 @@ def fetch_podcasts():
     categories = ['popular', 'recommended', 'new']
     podcasts_by_category = {}
     for category in categories:
-        cur.execute("SELECT id, title, description, author, genre, link FROM podcasts WHERE category = %s", (category,))
+        cur.execute("SELECT id, title, description, author, genre, link, platform FROM podcasts WHERE category = %s", (category,))
         podcasts = cur.fetchall()
         podcasts_list = []
         for podcast in podcasts:
@@ -39,7 +39,8 @@ def fetch_podcasts():
                 'description': podcast[2],
                 'author': podcast[3],
                 'genre': podcast[4],
-                'link': podcast[5]
+                'link': podcast[5],
+                'platform': podcast[6]
             })
         podcasts_by_category[category] = podcasts_list
     cur.close()

@@ -1,5 +1,42 @@
 const mainContent = document.getElementById('main-content');
 
+// Utility for platform colors
+const platformColors = {
+    podimo: '#7a4bf9',
+    spotify: '#1DB954',
+    // more later on
+};
+
+const applyPlatformColor = (podcastElement, platform) => {
+    const color = platformColors[platform.toLowerCase()];
+    if (color) {
+        const label = document.createElement('div');
+        label.classList.add('platform-label');
+        label.style.backgroundColor = color; // Set background color of the label
+
+        const platformName = document.createElement('span');
+        platformName.classList.add('platform-name');
+        platformName.textContent = platform.charAt(0).toUpperCase() + platform.slice(1);
+        
+        const visitLabel = document.createElement('span');
+        visitLabel.classList.add('visit-label');
+        visitLabel.textContent = 'Bezoek';
+
+        label.appendChild(platformName);
+        label.appendChild(visitLabel);
+        podcastElement.appendChild(label);
+    }
+};
+
+// Example usage
+document.querySelectorAll('.podcast').forEach(podcast => {
+    const platform = podcast.dataset.platform; // Assuming you have data-platform attribute
+    applyPlatformColor(podcast, platform);
+});
+
+
+
+
 // Function to initialize podcast logic
 const initializePodcastLogic = () => {
     console.log("Initializing podcast logic");
@@ -50,6 +87,12 @@ const initializePodcastLogic = () => {
         const podcastElement = podcastDiv.firstElementChild;
         podcastElement.classList.remove("template");
         podcastElement.style.display = 'block';
+
+        // Add platform-specific color and label
+        if (podcast.platform) {
+            applyPlatformColor(podcastElement, podcast.platform);
+        }
+
         return podcastElement;
     };
 
