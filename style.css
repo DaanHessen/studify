@@ -162,6 +162,10 @@ a {
     color: var(--first-color-dark);
 }
 
+.nav__link.tijdelijk {
+    color: var(--first-color-dark);
+}
+
 .nav__close {
     position: absolute;
     top: 10px;  
@@ -616,6 +620,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .podcast .platform-label .visit-label {
@@ -646,7 +651,6 @@ a {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-
 
 .podcast-content {
     flex: 1;

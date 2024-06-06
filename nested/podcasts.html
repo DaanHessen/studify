@@ -10,10 +10,10 @@
         <div class="sidebar-section">
             <h2>BROWSE</h2>
             <ul>
-                <li class="nav__link active" data-page="#">browse</li>
-                <li class="nav__link" data-page="popular.html">populaire podcasts</li>
-                <li class="nav__link" data-page="recommendations.html">aanbevolen podcasts</li>
-                <li class="nav__link" data-page="new.html">nieuwe podcasts</li>
+                <li class="nav__link tijdelijk" data-page="popular">browse</li>
+                <li class="nav__link" data-page="#">populaire podcasts</li>
+                <li class="nav__link" data-page="#">aanbevolen podcasts</li>
+                <li class="nav__link" data-page="#">nieuwe podcasts</li>
             </ul>
         </div>
         <div class="sidebar-section">
@@ -31,7 +31,6 @@
                 <a href="#" class="show-more show-more-popular">alle populaire podcasts</a>
             </div>
             <div class="podcast-container" id="popular-container">
-                <!-- Podcast template -->
                 <div class="podcast template" data-platform="%platform%">
                     <a href="%link%" class="podcast-content" target="_blank">
                         <h3>%title%</h3>
@@ -39,7 +38,6 @@
                         <p class="author">%author%</p>
                         <p class="genre">%genre%</p>
                     </a>
-                    <div class="overlay">Doorgaan naar externe website</div>
                 </div>
             </div>
         </div>
@@ -50,7 +48,6 @@
                 <a href="#" class="show-more show-more-recommendations">alle aanbevolen podcasts</a>
             </div>
             <div class="podcast-container" id="recommended-container">
-                <!-- Podcast template -->
                 <div class="podcast template" data-platform="%platform%">
                     <a href="%link%" class="podcast-content" target="_blank">
                         <h3>%title%</h3>
@@ -68,7 +65,6 @@
                 <a href="#" class="show-more show-more-new">alle nieuwe podcasts</a>
             </div>
             <div class="podcast-container" id="new-container">
-                <!-- Podcast template -->
                 <div class="podcast template" data-platform="%platform%">
                     <a href="%link%" class="podcast-content" target="_blank">
                         <h3>%title%</h3>
@@ -81,5 +77,6 @@
         </div>
     </div>
     <script src="main.js"></script>
+    <script src="/src/singlePageLoader.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@ const mainContent = document.getElementById('main-content');
 const platformColors = {
     podimo: '#7a4bf9',
     spotify: '#1DB954',
+    youtube: '#CD201F',
     // more later on
 };
 
@@ -250,3 +251,6 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebar.classList.toggle('active');
     });
 });
+
+
+export { initializePodcastLogic}
